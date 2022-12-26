@@ -1,0 +1,161 @@
+CREATE TABLE Appointment (
+    Appointment_ID integer  NOT NULL,
+    Appointment_num integer  NOT NULL,
+    Appointment_Date Text  NOT NULL,
+    Appointment_Time Text  NOT NULL,
+    Location_Location_Id integer  NOT NULL,
+    CONSTRAINT Appointment_pk PRIMARY KEY (Appointment_ID)
+);
+Insert into Appointment (Appointment_ID,Appointment_num,Appointment_Date,Appointment_Time,Location_Location_Id)
+Values (001,1,"14/05/19","15:00",1);
+Insert into Appointment (Appointment_ID,Appointment_num,Appointment_Date,Appointment_Time,Location_Location_Id)
+Values (002,2,"15/09/19","19:08",5);
+Insert into Appointment (Appointment_ID,Appointment_num,Appointment_Date,Appointment_Time,Location_Location_Id)
+Values (005,10,"16/10/19","20:00",6);
+
+CREATE TABLE AutoParts (
+    Parts_ID INTEGER  NOT NULL,
+    Parts_type TEXT  NOT NULL,
+    Retail_Price numeric  NOT NULL,
+    Purchase_Price numeric  NOT NULL,
+    Description TEXT  NOT NULL,
+    Parts_Used_PartUsed_Id INTEGER  NOT NULL,
+    Car_Car_ID INTEGER  NOT NULL,
+    CONSTRAINT AutoParts_pk PRIMARY KEY (Parts_ID)
+);
+Insert into AutoParts (Parts_ID,Parts_type,Retail_Price,Purchase_Price,Description,Parts_Used_PartUsed_Id,Car_Car_ID)
+values (001,"Radiator",7000,5500,"Radiator Leaks",05,015);
+Insert into AutoParts (Parts_ID,Parts_type,Retail_Price,Purchase_Price,Description,Parts_Used_PartUsed_Id,Car_Car_ID)
+values (002,"Fuel Pump",2000,1500,"Weak Fuel Pump",10,024);
+Insert into AutoParts (Parts_ID,Parts_type,Retail_Price,Purchase_Price,Description,Parts_Used_PartUsed_Id,Car_Car_ID)
+values (003,"Brake Shoe",3500,3000,"Screeching, grinding, squealing, rubbing, and other eardrum-piercing noises",03,019);
+
+CREATE TABLE Bill (
+    Bill_id integer  NOT NULL,
+    Bill_num integer  NOT NULL,
+    Date_Received text  NOT NULL,
+    Total_Amount numeric  NOT NULL,
+    Client_Client_ID integer  NOT NULL,
+    Car_Car_ID integer  NOT NULL,
+    CONSTRAINT Bill_pk PRIMARY KEY (Bill_id)
+);
+
+Insert into Bill (Bill_id,Bill_num,Date_Received,Total_Amount,Client_Client_ID,Car_Car_ID)
+Values (001,1,"10-10-19",10000,015,013);
+Insert into Bill (Bill_id,Bill_num,Date_Received,Total_Amount,Client_Client_ID,Car_Car_ID)
+Values (002,8,"16-02-18",20000,010,011);
+Insert into Bill (Bill_id,Bill_num,Date_Received,Total_Amount,Client_Client_ID,Car_Car_ID)
+Values (003,3,"12-03-19",15000,019,014);
+
+CREATE TABLE Car (
+    make text  NOT NULL,
+    model text  NOT NULL,
+    Engine_Type integer  NOT NULL,
+    colour text  NOT NULL,
+    For_Sale Text  NOT NULL,
+    Car_ID integer  NOT NULL,
+    CONSTRAINT Car_pk PRIMARY KEY (Car_ID)
+);
+
+Insert into Car (make,model,Engine_Type,colour,For_Sale,Car_ID)
+values ("Toyota",2005,1000,"white","No",023);
+Insert into Car (make,model,Engine_Type,colour,For_Sale,Car_ID)
+values ("Honda",2008,1300,"Black","Yes",019);
+Insert into Car (make,model,Engine_Type,colour,For_Sale,Car_ID)
+values ("Suzuki",2010,1500,"Blue","No",026);
+
+CREATE TABLE Client (
+    Client_name text  NOT NULL,
+    Client_ID integer  NOT NULL,
+    Client_Address text  NOT NULL,
+    Contact_Number text  NOT NULL,
+    DOB text  NOT NULL,
+    Appointment_Appointment_ID integer  NOT NULL,
+    Location_Location_Id integer  NOT NULL,
+    Car_Car_ID integer  NOT NULL,
+    CONSTRAINT Client_pk PRIMARY KEY (Client_ID)
+);
+
+Insert into Client (Client_name,Client_ID,Client_Address,Contact_Number,DOB,Appointment_Appointment_ID,Location_Location_Id,Car_Car_ID)
+values ("Ahmed",19,"Block 10, Gulshan-e-Iqbal","03001784697","1-06-1992",10,14,32);
+Insert into Client (Client_name,Client_ID,Client_Address,Contact_Number,DOB,Appointment_Appointment_ID,Location_Location_Id,Car_Car_ID)
+values ("Hussain",24,"Block 13, FB Area","03219147997","12-10-1987",15,18,22);
+Insert into Client (Client_name,Client_ID,Client_Address,Contact_Number,DOB,Appointment_Appointment_ID,Location_Location_Id,Car_Car_ID)
+values ("Ali",31,"Plot#31 Sector 15-A/5, North Karachi","03234592973","21-11-1994",24,25,10);
+
+CREATE TABLE Invoice (
+    Invoice_Id integer  NOT NULL,
+    Invoice_Num integer  NOT NULL,
+    Invoice_Date text  NOT NULL,
+    Total numeric  NOT NULL,
+    Car_Car_ID integer  NOT NULL,
+    Client_Client_ID integer  NOT NULL,
+    Salesmen_Salesmen_Id integer  NOT NULL,
+    Mechanic_Service_Mechanic_Service_ID integer  NOT NULL,
+    Parts_Used_PatrsUsed_Id integer  NOT NULL,
+    CONSTRAINT Invoice_pk PRIMARY KEY (Invoice_Id)
+);
+
+Insert into Invoice (Invoice_Id,Invoice_Num,Invoice_Date,Total,Car_Car_ID,Client_Client_ID,Salesmen_Salesmen_Id,Mechanic_Service_Mechanic_Service_ID,Parts_Used_PatrsUsed_Id)
+values (10,11,"16-04-2019",25000,19,12,00,15,19);
+Insert into Invoice (Invoice_Id,Invoice_Num,Invoice_Date,Total,Car_Car_ID,Client_Client_ID,Salesmen_Salesmen_Id,Mechanic_Service_Mechanic_Service_ID,Parts_Used_PatrsUsed_Id)
+values (19,15,"11-07-2019",35000,17,15,02,14,20);
+Insert into Invoice (Invoice_Id,Invoice_Num,Invoice_Date,Total,Car_Car_ID,Client_Client_ID,Salesmen_Salesmen_Id,Mechanic_Service_Mechanic_Service_ID,Parts_Used_PatrsUsed_Id)
+values (31,31,"12-10-2019",50000,26,14,00,28,22);
+
+CREATE TABLE Location (
+    Location_Id integer  NOT NULL,
+    CONSTRAINT Location_pk PRIMARY KEY (Location_Id)
+);
+
+Insert into Location (Location_Id)
+Values (11);
+Insert into Location (Location_Id)
+Values (15);
+Insert into Location (Location_Id)
+Values (20);
+
+CREATE TABLE Mechanic (
+    Mechanic_ID integer  NOT NULL,
+    Mechanic_name text  NOT NULL,
+    M_Contact_Num text  NOT NULL,
+    Mechanic_Address text  NOT NULL,
+    Mechanic_Type_mechanic_Id integer  NOT NULL,
+    Appointment_Appointment_ID integer  NOT NULL,
+    Location_Location_Id integer  NOT NULL,
+    CONSTRAINT Mechanic_pk PRIMARY KEY (Mechanic_ID)
+);
+Insert into Mechanic (Mechanic_ID,Mechanic_name,M_Contact_Num,Mechanic_Address,Mechanic_Type_mechanic_Id,Appointment_Appointment_ID,Location_Location_Id)
+values (2,"Shahrukh","03144597813","Block N, North Nazimabad",12,10,3);
+Insert into Mechanic (Mechanic_ID,Mechanic_name,M_Contact_Num,Mechanic_Address,Mechanic_Type_mechanic_Id,Appointment_Appointment_ID,Location_Location_Id)
+values (3,"Iqbal","03224099037","Block 6, Azizabad",15,9,8);
+Insert into Mechanic (Mechanic_ID,Mechanic_name,M_Contact_Num,Mechanic_Address,Mechanic_Type_mechanic_Id,Appointment_Appointment_ID,Location_Location_Id)
+values (4,"Mubashir","03427688198","Block 10, FB Area",22,14,7);
+
+CREATE TABLE Mechanic_Service (
+    Mechanic_Service_ID integer  NOT NULL,
+    Service_Hours integer  NOT NULL,
+    Service_Rate numeric  NOT NULL,
+    Mechanic_Mechanic_ID integer  NOT NULL,
+    Service_Service_ID integer  NOT NULL,
+    Bill_Bill_id integer  NOT NULL,
+    CONSTRAINT Mechanic_Service_pk PRIMARY KEY (Mechanic_Service_ID)
+);
+Insert into Mechanic_Service(Mechanic_Service_ID,Service_Hours,Service_Rate,Mechanic_Mechanic_ID,Service_Service_ID,Bill_Bill_id)
+values (10,8,1500,13,14,5);
+Insert into Mechanic_Service(Mechanic_Service_ID,Service_Hours,Service_Rate,Mechanic_Mechanic_ID,Service_Service_ID,Bill_Bill_id)
+values (12,6,600,7,8,3);
+Insert into Mechanic_Service(Mechanic_Service_ID,Service_Hours,Service_Rate,Mechanic_Mechanic_ID,Service_Service_ID,Bill_Bill_id)
+values (20,10,1000,14,18,13);
+
+CREATE TABLE Mechanic_Type (
+    mechanic_Id integer  NOT NULL,
+    Field text  NOT NULL,
+    CONSTRAINT Mechanic_Type_pk PRIMARY KEY (mechanic_Id)
+);
+Insert into Mechanic_Type (mechanic_Id,Field)
+values (10,"Engine Mechanic");
+Insert into Mechanic_Type (mechanic_Id,Field)
+values (4,"Radiator Mechanic");
+Insert into Mechanic_Type (mechanic_Id,Field)
+values (6,"AC Mechanic");

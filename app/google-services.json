@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1049848691699",
+    "firebase_url": "https://famanic-ad42c.firebaseio.com",
+    "project_id": "famanic-ad42c",
+    "storage_bucket": "famanic-ad42c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049848691699:android:bedacaf30a443a363fb086",
+        "android_client_info": {
+          "package_name": "com.company.famanic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049848691699-q8ufemrmj9cj5cdb5lt1qrqbrd62814e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.famanic",
+            "certificate_hash": "388d73a83d2483f70405c3b5cb97541b9181837b"
+          }
+        },
+        {
+          "client_id": "1049848691699-0e2c9gm1fi3j6dkecdjk6vsp8q4o2gcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdihdvrmM6gWgDBfBKImccvW_rfsCLTOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049848691699-0e2c9gm1fi3j6dkecdjk6vsp8q4o2gcn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

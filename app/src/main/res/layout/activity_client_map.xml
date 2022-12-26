@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.company.famanic.ClientMapActivity" >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttons">
+            <Button
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logout"
+                android:text="@string/logout"
+                tools:ignore="ButtonStyle" />
+            <Button
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/history"
+                android:text="@string/history"
+                tools:ignore="ButtonStyle" />
+            <Button
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/settings"
+                android:text="Settings"
+                tools:ignore="ButtonStyle,HardcodedText" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mechanicInfo"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:background="@android:color/white"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:id="@+id/mechanicProfileImage"
+                android:src="@mipmap/ic_launcher_round"
+                android:padding="20sp"
+                tools:ignore="ContentDescription" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="40sp"
+                tools:ignore="RtlSymmetry">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mechanicName"
+                    android:paddingBottom="10sp"
+                    android:paddingTop="20sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mechanicPhone"
+                    android:paddingBottom="10sp"
+                    android:paddingTop="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ratingBar"
+                    android:layout_gravity="center"
+                    android:numStars="5"
+                    android:stepSize="0.1"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioGroup"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brake and Transmission"
+                    android:id="@+id/MechanicX"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Engine"
+                    android:id="@+id/MechanicBlack"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Auto Exhaust"
+                    android:id="@+id/MechanicXl"/>
+            </RadioGroup>
+
+            <Button
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Call Mechanic"
+                android:id="@+id/request"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="359dp"
+            android:layout_height="49dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.113"
+            tools:layout="@layout/place_autocomplete_fragment" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/place_autocomplete_fragment"
+            app:layout_constraintEnd_toEndOf="@id/place_autocomplete_fragment"
+            app:layout_constraintStart_toStartOf="@id/place_autocomplete_fragment"
+            app:layout_constraintTop_toTopOf="@id/place_autocomplete_fragment"
+            app:layout_constraintVertical_bias="0.0">
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
+

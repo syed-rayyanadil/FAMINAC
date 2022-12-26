@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FAMANIC</string>
+    <string name="title_activity_mechanic_map">Map</string>
+    <string name="logout">logout</string>
+    <string name="history">history</string>
+    <string name="search">Search...</string>
+</resources>

@@ -1,0 +1,302 @@
+-- Created by Vertabelo (http://vertabelo.com)
+-- Last modification date: 2019-10-14 19:42:02.374
+
+-- tables
+-- Table: Appointment
+CREATE TABLE Appointment (
+    Appointment_ID int  NOT NULL,
+    Appointment_num int  NOT NULL,
+    Appointment_Date date  NOT NULL,
+    Appointment_Time time  NOT NULL,
+    Location_Location_Id int  NOT NULL,
+    CONSTRAINT Appointment_pk PRIMARY KEY (Appointment_ID)
+);
+
+-- Table: AutoParts
+CREATE TABLE AutoParts (
+    Parts_ID int  NOT NULL,
+    Parts_type varchar(15)  NOT NULL,
+    Retail_Price money  NOT NULL,
+    Purchase_Price money  NOT NULL,
+    Description varchar(30)  NOT NULL,
+    Parts_Used_PartUsed_Id int  NOT NULL,
+    Car_Car_ID int  NOT NULL,
+    CONSTRAINT AutoParts_pk PRIMARY KEY (Parts_ID)
+);
+
+-- Table: Bill
+CREATE TABLE Bill (
+    Bill_id int  NOT NULL,
+    Bill_num int  NOT NULL,
+    Date_Received date  NOT NULL,
+    Total_Amount money  NOT NULL,
+    Client_Client_ID int  NOT NULL,
+    Car_Car_ID int  NOT NULL,
+    CONSTRAINT Bill_pk PRIMARY KEY (Bill_id)
+);
+
+-- Table: Car
+CREATE TABLE Car (
+    make varchar(15)  NOT NULL,
+    model date  NOT NULL,
+    Engine_Type int  NOT NULL,
+    colour varchar(15)  NOT NULL,
+    For_Sale boolean  NOT NULL,
+    Car_ID int  NOT NULL,
+    CONSTRAINT Car_pk PRIMARY KEY (Car_ID)
+);
+
+-- Table: Client
+CREATE TABLE Client (
+    Client_name varchar(30)  NOT NULL,
+    Client_ID int  NOT NULL,
+    Client_Address varchar(100)  NOT NULL,
+    Contact_Number varchar(20)  NOT NULL,
+    DOB date  NOT NULL,
+    Appointment_Appointment_ID int  NOT NULL,
+    Location_Location_Id int  NOT NULL,
+    Car_Car_ID int  NOT NULL,
+    CONSTRAINT Client_pk PRIMARY KEY (Client_ID)
+);
+
+-- Table: Invoice
+CREATE TABLE Invoice (
+    Invoice_Id int  NOT NULL,
+    Invoice_Num int  NOT NULL,
+    Invoice_Date date  NOT NULL,
+    Total money  NOT NULL,
+    Car_Car_ID int  NOT NULL,
+    Client_Client_ID int  NOT NULL,
+    Salesmen_Salesmen_Id int  NOT NULL,
+    Mechanic_Service_Mechanic_Service_ID int  NOT NULL,
+    Parts_Used_PatrsUsed_Id int  NOT NULL,
+    CONSTRAINT Invoice_pk PRIMARY KEY (Invoice_Id)
+);
+
+-- Table: Location
+CREATE TABLE Location (
+    Location_Id int  NOT NULL,
+    CONSTRAINT Location_pk PRIMARY KEY (Location_Id)
+);
+
+-- Table: Mechanic
+CREATE TABLE Mechanic (
+    Mechanic_ID int  NOT NULL,
+    Mechanic_name varchar(50)  NOT NULL,
+    M_Contact_Num varchar(20)  NOT NULL,
+    Mechanic_Address varchar(100)  NOT NULL,
+    Mechanic_Type_mechanic_Id int  NOT NULL,
+    Appointment_Appointment_ID int  NOT NULL,
+    Location_Location_Id int  NOT NULL,
+    CONSTRAINT Mechanic_pk PRIMARY KEY (Mechanic_ID)
+);
+
+-- Table: Mechanic_Service
+CREATE TABLE Mechanic_Service (
+    Mechanic_Service_ID int  NOT NULL,
+    Service_Hours time  NOT NULL,
+    Service_Rate money  NOT NULL,
+    Mechanic_Mechanic_ID int  NOT NULL,
+    Service_Service_ID int  NOT NULL,
+    Bill_Bill_id int  NOT NULL,
+    CONSTRAINT Mechanic_Service_pk PRIMARY KEY (Mechanic_Service_ID)
+);
+
+-- Table: Mechanic_Type
+CREATE TABLE Mechanic_Type (
+    mechanic_Id int  NOT NULL,
+    Field varchar(20)  NOT NULL,
+    CONSTRAINT Mechanic_Type_pk PRIMARY KEY (mechanic_Id)
+);
+
+-- Table: Parts_Used
+CREATE TABLE Parts_Used (
+    PatrsUsed_Id int  NOT NULL,
+    Price money  NOT NULL,
+    Quantity int  NOT NULL,
+    AutoParts_Parts_ID int  NOT NULL,
+    CONSTRAINT Parts_Used_pk PRIMARY KEY (PatrsUsed_Id)
+);
+
+-- Table: Salesmen
+CREATE TABLE Salesmen (
+    Salesmen_Id int  NOT NULL,
+    Salesmen_name varchar(30)  NOT NULL,
+    Salesmen_Contact_num varchar(20)  NOT NULL,
+    Salesmen_Address varchar(100)  NOT NULL,
+    Location_Location_Id int  NOT NULL,
+    CONSTRAINT Salesmen_pk PRIMARY KEY (Salesmen_Id)
+);
+
+-- Table: Service
+CREATE TABLE Service (
+    Service_ID int  NOT NULL,
+    Service_Type varchar(15)  NOT NULL,
+    Rate money  NOT NULL,
+    CONSTRAINT Service_pk PRIMARY KEY (Service_ID)
+);
+
+-- foreign keys
+-- Reference: Appointment_Location (table: Appointment)
+ALTER TABLE Appointment ADD CONSTRAINT Appointment_Location
+    FOREIGN KEY (Location_Location_Id)
+    REFERENCES Location (Location_Id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: AutoParts_Car (table: AutoParts)
+ALTER TABLE AutoParts ADD CONSTRAINT AutoParts_Car
+    FOREIGN KEY (Car_Car_ID)
+    REFERENCES Car (Car_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Bill_Car (table: Bill)
+ALTER TABLE Bill ADD CONSTRAINT Bill_Car
+    FOREIGN KEY (Car_Car_ID)
+    REFERENCES Car (Car_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Bill_Client (table: Bill)
+ALTER TABLE Bill ADD CONSTRAINT Bill_Client
+    FOREIGN KEY (Client_Client_ID)
+    REFERENCES Client (Client_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Client_Appointment (table: Client)
+ALTER TABLE Client ADD CONSTRAINT Client_Appointment
+    FOREIGN KEY (Appointment_Appointment_ID)
+    REFERENCES Appointment (Appointment_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Client_Car (table: Client)
+ALTER TABLE Client ADD CONSTRAINT Client_Car
+    FOREIGN KEY (Car_Car_ID)
+    REFERENCES Car (Car_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Client_Location (table: Client)
+ALTER TABLE Client ADD CONSTRAINT Client_Location
+    FOREIGN KEY (Location_Location_Id)
+    REFERENCES Location (Location_Id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Invoice_Car (table: Invoice)
+ALTER TABLE Invoice ADD CONSTRAINT Invoice_Car
+    FOREIGN KEY (Car_Car_ID)
+    REFERENCES Car (Car_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Invoice_Client (table: Invoice)
+ALTER TABLE Invoice ADD CONSTRAINT Invoice_Client
+    FOREIGN KEY (Client_Client_ID)
+    REFERENCES Client (Client_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Invoice_Mechanic_Service (table: Invoice)
+ALTER TABLE Invoice ADD CONSTRAINT Invoice_Mechanic_Service
+    FOREIGN KEY (Mechanic_Service_Mechanic_Service_ID)
+    REFERENCES Mechanic_Service (Mechanic_Service_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Invoice_Parts_Used (table: Invoice)
+ALTER TABLE Invoice ADD CONSTRAINT Invoice_Parts_Used
+    FOREIGN KEY (Parts_Used_PatrsUsed_Id)
+    REFERENCES Parts_Used (PatrsUsed_Id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Invoice_Salesmen (table: Invoice)
+ALTER TABLE Invoice ADD CONSTRAINT Invoice_Salesmen
+    FOREIGN KEY (Salesmen_Salesmen_Id)
+    REFERENCES Salesmen (Salesmen_Id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Mechanic_Appointment (table: Mechanic)
+ALTER TABLE Mechanic ADD CONSTRAINT Mechanic_Appointment
+    FOREIGN KEY (Appointment_Appointment_ID)
+    REFERENCES Appointment (Appointment_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Mechanic_Location (table: Mechanic)
+ALTER TABLE Mechanic ADD CONSTRAINT Mechanic_Location
+    FOREIGN KEY (Location_Location_Id)
+    REFERENCES Location (Location_Id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Mechanic_Mechanic_Type (table: Mechanic)
+ALTER TABLE Mechanic ADD CONSTRAINT Mechanic_Mechanic_Type
+    FOREIGN KEY (Mechanic_Type_mechanic_Id)
+    REFERENCES Mechanic_Type (mechanic_Id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Mechanic_Service_Bill (table: Mechanic_Service)
+ALTER TABLE Mechanic_Service ADD CONSTRAINT Mechanic_Service_Bill
+    FOREIGN KEY (Bill_Bill_id)
+    REFERENCES Bill (Bill_id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Mechanic_Service_Mechanic (table: Mechanic_Service)
+ALTER TABLE Mechanic_Service ADD CONSTRAINT Mechanic_Service_Mechanic
+    FOREIGN KEY (Mechanic_Mechanic_ID)
+    REFERENCES Mechanic (Mechanic_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Mechanic_Service_Service (table: Mechanic_Service)
+ALTER TABLE Mechanic_Service ADD CONSTRAINT Mechanic_Service_Service
+    FOREIGN KEY (Service_Service_ID)
+    REFERENCES Service (Service_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Parts_Used_AutoParts (table: Parts_Used)
+ALTER TABLE Parts_Used ADD CONSTRAINT Parts_Used_AutoParts
+    FOREIGN KEY (AutoParts_Parts_ID)
+    REFERENCES AutoParts (Parts_ID)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Salesmen_Location (table: Salesmen)
+ALTER TABLE Salesmen ADD CONSTRAINT Salesmen_Location
+    FOREIGN KEY (Location_Location_Id)
+    REFERENCES Location (Location_Id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- End of file.
+
+
